@@ -1,0 +1,19 @@
+{
+  "name": "DevNews",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "15.3.2",
+    "react-native": "0.34.0",
+    "react-native-gifted-listview": "0.0.15",
+    "react-native-navigationbar": "^0.4.5",
+    "react-timer-mixin": "^0.13.3"
+  },
+  "jest": {
+    "preset": "jest-react-native"
+  }
+}
