@@ -5,10 +5,10 @@
 ####Android:[Download Apk](https://github.com/githubhaohao/DevNews/raw/master/rcf/app-debug.apk)
 ####iOS:TBD
 #Set up
-1.git clone https://github.com/githubhaohao/DevNews.git
-2.cd DevNews
-3.npm install
-4.react native run-android/ios
+1. git clone https://github.com/githubhaohao/DevNews.git
+2. cd DevNews
+3. npm install
+4. react native run-android/ios
 #Gif
 ![img1](https://github.com/githubhaohao/DevNews/blob/master/rcf/img0.gif)
 ![img1](https://github.com/githubhaohao/DevNews/blob/master/rcf/img1.gif)
