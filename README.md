@@ -2,13 +2,13 @@
 ### DevNews ReactNative app for Android and IOS.
 ###Supported by Gank.io.Thank [Bob1993](https://github.com/Bob1993/React-Native-Gank) for the design model. 
 #Demo
-Android:[Download Apk](https://github.com/githubhaohao/DevNews/raw/master/rcf/app-debug.apk)
-iOS:TBD
+####Android:[Download Apk](https://github.com/githubhaohao/DevNews/raw/master/rcf/app-debug.apk)
+####iOS:TBD
 #Set up
-####1 git clone https://github.com/githubhaohao/DevNews.git
-####2 cd DevNews
-####3 npm install
-####4 react native run-android/ios
+- git clone https://github.com/githubhaohao/DevNews.git
+- cd DevNews
+- npm install
+- react native run-android/ios
 #Gif
 ![img1](https://github.com/githubhaohao/DevNews/blob/master/rcf/img0.gif)
 ![img1](https://github.com/githubhaohao/DevNews/blob/master/rcf/img1.gif)
