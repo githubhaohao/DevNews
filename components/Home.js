@@ -16,7 +16,6 @@ import {
     ToolbarAndroid,
     Animated,
     StatusBar,
-    ToastAndroid,
     Dimensions,
     ListView,
     } from 'react-native';
@@ -26,6 +25,8 @@ const requestUtil = new RequestUtil();
 const {width,height,scale} = Dimensions.get('window');
 const GiftedListView = require('react-native-gifted-listview');
 import NavigationBar from 'react-native-navigationbar';
+import Toast from 'react-native-easy-toast';
+
 const ITEM_MARGIN = 3;
 const ITEM_WIDTH = (width - ITEM_MARGIN * 3) / 2;
 
@@ -33,7 +34,6 @@ export default class Home extends Component {
 
     static get defaultProps(){
         return {
-
         }
     }
 
@@ -100,7 +100,7 @@ export default class Home extends Component {
                 isError:true,
                 isLoading:false,
             });
-            ToastAndroid.show(error.toString(),ToastAndroid.SHORT);
+            this.toast.show(error.toString());
         }
 
     }
@@ -196,10 +196,19 @@ export default class Home extends Component {
                     title='Developer News'
                     backColor='white'
                     backIconHidden={true}
-                    barTintColor='#444'
+                    barTintColor='#00a2ed'
                     titleColor='white'
+                    actionName='关于'
+                    actionFunc={() => {this.props.navigator.push({name:'about'})}}
+                    actionTextColor='white'
                     />
                 {this.renderNewsList()}
+                <TouchableOpacity style={styles.fabTouchableView} activeOpacity={0.6} onPress={() => {this.navigateToFavorite()}}>
+                    <View style={styles.fabView}>
+                        <Image style={styles.fabImage} source={{uri:"favorite"}}/>
+                    </View>
+                </TouchableOpacity>
+                <Toast ref={e =>this.toast = e}/>
             </View>)
         } else {
             content = (
@@ -208,24 +217,6 @@ export default class Home extends Component {
                 </View>);
         }
         return content;
-    }
-
-    async onActionSelected(position){
-        //if(position == 0) {
-        //    this.pageIndex = 0;
-        //    await this.setState({
-        //        isGridLayout:false,
-        //    });
-        //    await this.onFetch(true,1,this.pushData);
-        //    this.onFetch(false,1,this.pushData);
-        //} else {
-        //    this.pageIndex = 0;
-        //    await this.setState({
-        //        isGridLayout:true,
-        //    });
-        //    await this.onFetch(true,1,this.pushData);
-        //    this.onFetch(false,1,this.pushData);
-        //}
     }
 
     renderNewsList(){
@@ -247,7 +238,7 @@ export default class Home extends Component {
                    }}
                 refreshableTintColor="blue"
                 contentContainerStyle={style}
-                refreshableColors={['red','green']}
+                refreshableColors={['#00a2ed','green']}
                 />
         );
 
@@ -269,13 +260,13 @@ export default class Home extends Component {
                 let dateArg = this.dateArray.slice(this.pageIndex,this.pageIndex + 10);
                 let loadMoreData = await requestUtil.getStories(dateArg);
                 if(typeof this.newsGroupData === 'undefined'){
-                    ToastAndroid.show("没有更多数据可加载了...",ToastAndroid.SHORT);
+                    this.toast.show("没有更多数据可加载了...");
                 } else {
                     callback(loadMoreData);
                 }
 
             } catch (error) {
-                ToastAndroid.show(error.toString(),ToastAndroid.SHORT);
+                this.toast.show(error.toString());
             }
         }
     }
@@ -361,10 +352,16 @@ export default class Home extends Component {
 
     navigateToNews(news){
         this.props.navigator.push({
-            name:'news',
+            name:'story',
             news:news,
         });
 
+    }
+
+    navigateToFavorite(){
+        this.props.navigator.push({
+            name:'favorite',
+        });
     }
 
 }
@@ -372,7 +369,7 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:'black',
+        backgroundColor:'white',
     },
     welcomeView:{
         flex:1,
@@ -381,14 +378,14 @@ const styles = StyleSheet.create({
         right:0,
         bottom:0,
         top:0,
-        backgroundColor:'black',
+        backgroundColor:'#00a2ed',
     },
     welcomeTitle:{
-        color:'#aaaaaa',
+        color:'#efefef',
         fontSize:15,
     },
     welcomeSubtitle:{
-        color:'#aaaaaa',
+        color:'#efefef',
         fontSize:15,
     },
     toolbar: {
@@ -397,29 +394,6 @@ const styles = StyleSheet.create({
     },
     headerView:{
         flex:5,
-    },
-    middleView:{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:'#444',
-        marginTop:10,
-    },
-    bottomView:{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:'#444',
-        marginTop:10,
-    },
-    headerTitle:{
-        position:'absolute',
-        bottom:0,
-        width:width,
-        height:56,
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:'#55333333',
     },
     content:{
         flex:1,
@@ -475,7 +449,25 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         paddingLeft:5,
         paddingRight:5,
-
     },
+    fabTouchableView:{
+        position:'absolute',
+        bottom:24,
+        right:24,
+        width:54,
+        height:54,
+    },
+    fabView:{
+        flex:1,
+        backgroundColor:'#00a2ed',
+        borderRadius:27,
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    fabImage:{
+        width:32,
+        height:32,
+    },
+
 });
 

@@ -104,6 +104,7 @@ export default class News extends Component {
         let data = newsData.results[category];
         for(let i = 0;i<data.length;i++){
             let item = data[i];
+            //console.log('[item]',item);item._id
             child.push(
             <TouchableOpacity
                 activeOpacity={0.3}
@@ -112,6 +113,7 @@ export default class News extends Component {
                         name:'detail',
                         url:item.url,
                         title:item.desc,
+                        id:item._id,
                     });
                 }}
                 style={styles.itemView} key={i}>
@@ -125,7 +127,7 @@ export default class News extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: '#efefef',
     },
     contentView:{
         flex:1,
@@ -191,7 +193,7 @@ const styles = StyleSheet.create({
         paddingTop:20,
         justifyContent:'space-between',
         alignItems:'center',
-        backgroundColor:'#444',
+        backgroundColor:'#00a2ed',
         flexDirection:'row',
     },
     backIcon: {
