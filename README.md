@@ -14,8 +14,8 @@
 ![img1](https://github.com/githubhaohao/DevNews/blob/master/rcf/img4.gif)
 
 ## TODO
-* 收藏存储功能
-* 重新定义NavigationBar（Android/iOS)
+* ~~收藏存储功能~~
+* ~~重新定义NavigationBar（Android/iOS)~~
 * 完善对iOS的支持
 * Android原生版
 * 微信小程序版
